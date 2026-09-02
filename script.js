@@ -9,6 +9,11 @@ const API_KEY = "Add your api key here please";
 let conversation = [];
 
 sendBtn.addEventListener("click", sendMessage);
+promptInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    sendMessage();
+  }
+});
 
 async function sendMessage() {
   let time = date.toLocaleTimeString("en-US", {
