@@ -1,7 +1,7 @@
 const chat = document.getElementById("chat");
 const promptInput = document.getElementById("prompt");
 const sendBtn = document.getElementById("sendBtn");
-
+const date = new Date();
 const API_URL =
   "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
 const API_KEY = "Add your api key here please";
@@ -11,6 +11,11 @@ let conversation = [];
 sendBtn.addEventListener("click", sendMessage);
 
 async function sendMessage() {
+  let time = date.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
   // Get the user's message
 
   const prompt = promptInput.value.trim();
@@ -25,7 +30,10 @@ async function sendMessage() {
 
   chat.innerHTML += `
         <div class="message user">
-            ${prompt}
+          <div class="bubble">
+            <p>${prompt}</p>
+            <span class="message-time">${time}</span>
+          </div>  
         </div>
     `;
 
@@ -78,8 +86,12 @@ async function sendMessage() {
     const formattedMessage = marked.parse(aiMessage);
 
     chat.innerHTML += `
-            <div class="message ai">
-                ${formattedMessage}
+            <div class="message">
+              <div class="avater">🤖</div>
+              <div class="bubble">
+                <p>${formattedMessage}</p>
+                <span class="message-time"> 10:32 AM </span>
+              </div>  
             </div>
         `;
 
@@ -109,3 +121,9 @@ async function sendMessage() {
         `;
   }
 }
+
+// DARK MODE
+const darkMode = document.getElementById("svg");
+darkMode.addEventListener("click", () => {
+  body.classList.toggle("dark-mode");
+});
