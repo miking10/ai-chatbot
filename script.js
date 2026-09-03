@@ -6,6 +6,7 @@ const headerText = document.getElementById("headerText");
 const title = document.getElementById("title");
 const chatTime = document.querySelector(".chat-time");
 const clearConversetion = document.getElementById("clearConversetion");
+const welcamText = document.querySelector(".welcamText");
 
 const date = new Date();
 const API_URL =
@@ -28,6 +29,10 @@ async function sendMessage() {
     minute: "2-digit",
     hour12: true,
   });
+
+  // hero section
+  welcamText.classList.add("none");
+
   // Get the user's message
 
   const prompt = promptInput.value.trim();
@@ -155,6 +160,11 @@ darkMode.addEventListener("click", () => {
 clear.addEventListener("click", () => {
   chat.innerHTML = "";
   headerText.innerHTML = "";
+  chat.innerHTML = `           
+    <div class="welcamText">
+      <span>🤖</span>
+      <h1>Hi There, how can i help you today?</h1>
+    </div>`;
 });
 
 clearConversetion.addEventListener("click", () => {
@@ -162,4 +172,9 @@ clearConversetion.addEventListener("click", () => {
   chatTime.innerHTML = "";
   chat.innerHTML = "";
   headerText.innerHTML = "";
+  chat.innerHTML = `           
+    <div class="welcamText">
+      <span>🤖</span>
+      <h1>Hi There, how can i help you today?</h1>
+    </div>`;
 });
