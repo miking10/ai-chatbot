@@ -1,6 +1,12 @@
 const chat = document.getElementById("chat");
 const promptInput = document.getElementById("prompt");
 const sendBtn = document.getElementById("sendBtn");
+const clear = document.getElementById("clear");
+const headerText = document.getElementById("headerText");
+const title = document.getElementById("title");
+const chatTime = document.querySelector(".chat-time");
+const clearConversetion = document.getElementById("clearConversetion");
+
 const date = new Date();
 const API_URL =
   "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
@@ -11,6 +17,7 @@ let conversation = [];
 sendBtn.addEventListener("click", sendMessage);
 promptInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
+    event.preventDefault();
     sendMessage();
   }
 });
@@ -49,6 +56,17 @@ async function sendMessage() {
     content: prompt,
   });
 
+  // TO ADD header name
+
+  headerText.innerHTML = conversation[0]["content"];
+
+  // ADD title name to sidebar name
+
+  title.innerHTML = conversation[0]["content"];
+
+  // ADD Time to the title
+
+  chatTime.innerHTML = time;
   // Clear input
 
   promptInput.value = "";
@@ -131,4 +149,17 @@ async function sendMessage() {
 const darkMode = document.getElementById("svg");
 darkMode.addEventListener("click", () => {
   body.classList.toggle("dark-mode");
+});
+
+// crear the date
+clear.addEventListener("click", () => {
+  chat.innerHTML = "";
+  headerText.innerHTML = "";
+});
+
+clearConversetion.addEventListener("click", () => {
+  title.innerHTML = "";
+  chatTime.innerHTML = "";
+  chat.innerHTML = "";
+  headerText.innerHTML = "";
 });
