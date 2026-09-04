@@ -80,7 +80,12 @@ async function sendMessage() {
 
   chat.innerHTML += `
         <div id="loading" class="message ai">
-            Thinking...
+            <div class="dots">
+            Thinking
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
         </div>
     `;
 
