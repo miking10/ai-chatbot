@@ -7,6 +7,8 @@ const title = document.getElementById("title");
 const chatTime = document.querySelector(".chat-time");
 const clearConversetion = document.getElementById("clearConversetion");
 const welcamText = document.querySelector(".welcamText");
+const newBtn = document.querySelector(".new-chat");
+const chatItem = document.querySelector(".chat-item");
 
 const date = new Date();
 const API_URL =
@@ -14,6 +16,7 @@ const API_URL =
 const API_KEY = "Add your api key here please";
 
 let conversation = [];
+// let history = [];
 
 sendBtn.addEventListener("click", sendMessage);
 promptInput.addEventListener("keydown", (event) => {
@@ -165,11 +168,8 @@ darkMode.addEventListener("click", () => {
 clear.addEventListener("click", () => {
   chat.innerHTML = "";
   headerText.innerHTML = "";
-  chat.innerHTML = `           
-    <div class="welcamText">
-      <span>🤖</span>
-      <h1>Hi There, how can i help you today?</h1>
-    </div>`;
+  // hero section
+  welcamText.classList.remove("none");
 });
 
 clearConversetion.addEventListener("click", () => {
@@ -177,9 +177,6 @@ clearConversetion.addEventListener("click", () => {
   chatTime.innerHTML = "";
   chat.innerHTML = "";
   headerText.innerHTML = "";
-  chat.innerHTML = `           
-    <div class="welcamText">
-      <span>🤖</span>
-      <h1>Hi There, how can i help you today?</h1>
-    </div>`;
+  // hero section
+  welcamText.classList.remove("none");
 });
