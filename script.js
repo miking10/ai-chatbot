@@ -103,7 +103,7 @@ async function sendMessage() {
 
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${API_KEY}`,
+        Authorization: `Bearer ${GEMINI_API_KEY}`,
       },
 
       body: JSON.stringify({
