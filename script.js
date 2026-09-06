@@ -14,7 +14,7 @@ const date = new Date();
 
 const API_URL =
   "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
-const API_KEY = "Add your api key here please";
+const GEMINI_API_KEY = process.env.API_KEY;
 
 let conversation = [];
 
