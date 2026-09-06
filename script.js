@@ -1,6 +1,16 @@
 const chat = document.getElementById("chat");
 const promptInput = document.getElementById("prompt");
 const sendBtn = document.getElementById("sendBtn");
+const clear = document.getElementById("clear");
+const headerText = document.getElementById("headerText");
+const title = document.getElementById("title");
+const chatTime = document.querySelector(".chat-time");
+const clearConversetion = document.getElementById("clearConversetion");
+const welcamText = document.querySelector(".welcamText");
+const newBtn = document.querySelector(".new-chat");
+const chatItem = document.querySelector(".chat-item");
+
+const date = new Date();
 
 const API_URL =
   "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
@@ -9,8 +19,24 @@ const API_KEY = "Add your api key here please";
 let conversation = [];
 
 sendBtn.addEventListener("click", sendMessage);
-
+promptInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    sendMessage();
+  }
+});
 async function sendMessage() {
+  // add time
+  let time = date.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  // Add welcam message
+
+  welcamText.classList.add("none");
+
   // Get the user's message
 
   const prompt = promptInput.value.trim();
@@ -25,7 +51,10 @@ async function sendMessage() {
 
   chat.innerHTML += `
         <div class="message user">
-            ${prompt}
+          <div class="bubble">
+            <p>${prompt}</p>
+            <span class="message-time">${time}</span>
+          </div>  
         </div>
     `;
 
@@ -36,17 +65,36 @@ async function sendMessage() {
     content: prompt,
   });
 
+  // TO ADD header name
+
+  headerText.innerHTML = conversation[0]["content"];
+
+  // ADD title name to sidebar name
+
+  title.innerHTML = conversation[0]["content"];
+
+  // ADD Time to the title
+
+  chatTime.innerHTML = time;
+
   // Clear input
 
   promptInput.value = "";
 
   // Show loading
-
   chat.innerHTML += `
-        <div id="loading" class="message ai">
-            Thinking...
-        </div>
-    `;
+          <div id="loading" class="message ai">
+              <div class="dots">
+              Thinking
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+          </div>
+      `;
+  // Clear input
+
+  promptInput.value = "";
 
   try {
     // Send request to AI
@@ -77,6 +125,12 @@ async function sendMessage() {
     const formattedMessage = marked.parse(aiMessage);
 
     chat.innerHTML += `
+            <div class="message">
+              <div class="avater">🤖</div>
+              <div class="bubble">
+                <p>${formattedMessage}</p>
+                <span class="message-time"> 10:32 AM </span>
+              </div>  
             <div class="message ai">
                 ${formattedMessage}
             </div>
@@ -108,3 +162,26 @@ async function sendMessage() {
         `;
   }
 }
+
+// DARK MODE
+const darkMode = document.getElementById("svg");
+darkMode.addEventListener("click", () => {
+  body.classList.toggle("dark-mode");
+});
+
+// crear the date
+clear.addEventListener("click", () => {
+  chat.innerHTML = "";
+  headerText.innerHTML = "";
+  // hero section
+  welcamText.classList.remove("none");
+});
+
+clearConversetion.addEventListener("click", () => {
+  title.innerHTML = "";
+  chatTime.innerHTML = "";
+  chat.innerHTML = "";
+  headerText.innerHTML = "";
+  // hero section
+  welcamText.classList.remove("none");
+});
