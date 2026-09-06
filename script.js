@@ -1,4 +1,4 @@
-import "dotenv/config";
+// import "dotenv/config";
 
 const chat = document.getElementById("chat");
 const promptInput = document.getElementById("prompt");
@@ -16,8 +16,8 @@ const date = new Date();
 
 const API_URL =
   "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
-const GEMINI_API_KEY = process.env.API_KEY;
-
+// const GEMINI_API_KEY = process.env.API_KEY;
+const API_KEY = "Add your api key here please";
 let conversation = [];
 
 sendBtn.addEventListener("click", sendMessage);
@@ -105,7 +105,7 @@ async function sendMessage() {
 
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${GEMINI_API_KEY}`,
+        Authorization: `Bearer ${API_KEY}`,
       },
 
       body: JSON.stringify({
