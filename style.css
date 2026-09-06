@@ -283,6 +283,7 @@ textarea {
   box-shadow: 0px 0px 20px gray;
   animation: bounce 2s infinite;
 }
+
 .none {
   display: none;
 }
@@ -299,7 +300,7 @@ textarea {
 }
 
 .welcamText h1 {
-  font-size: 50px;
+  font-size: clamp(30px, 5vw, 50px);
   background: -webkit-linear-gradient(45deg, #fb36f4, #0100ec);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
