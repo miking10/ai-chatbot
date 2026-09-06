@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 const chat = document.getElementById("chat");
 const promptInput = document.getElementById("prompt");
 const sendBtn = document.getElementById("sendBtn");
